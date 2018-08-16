@@ -21,23 +21,21 @@ var colorArray = [
     "blue",
     "black"
 ]
-var counter = 0;
+var colorCounter = 0;
 
 //creates, styles, and appends a button that will change background color of myDiv
 var bgButton = document.createElement("BUTTON");
     bgButton.type = "button";
-    bgButton.value = "Click Me";
     bgButton.onclick = 
         function changeBg() {
-            if(counter < colorArray.length - 1) {
-                counter++;
+            if(colorCounter < colorArray.length - 1) {
+                colorCounter++;
             } else {
-                counter = 0;
+                colorCounter = 0;
             }
-            myDiv.style.backgroundColor = colorArray[counter];
+            myDiv.style.backgroundColor = colorArray[colorCounter];
         };
     bgButton.id = "bgButton";
-    bgButton.className = "btn-style";
     bgButton.innerText = "Click Me!";
     bgButton.style.position = "relative";
     bgButton.style.top = "75px";
@@ -101,19 +99,56 @@ var fourthDiv = document.createElement("div");
     fourthDiv.style.textAlign = "center";
 document.body.appendChild(fourthDiv);
 
+//creates an img with src and alt
+var imgOfKnight = document.createElement("img");
+    imgOfKnight.id = "imgOfKnight";
+    imgOfKnight.src = "img/knight1.jpg";
+    imgOfKnight.alt = "image of knight, dragon, and shield";
+    imgOfKnight.style.maxHeight = "600px";
+    imgOfKnight.style.maxWidth = "600px";
+    imgOfKnight.style.minHeight = "600px";
+    imgOfKnight.style.minWidth = "600px";
+    imgOfKnight.style.objectFit = "cover";
+document.getElementById("fourthDiv").appendChild(imgOfKnight);
+
+//creates br inbetween img and btn
+var imgBtnBr = document.createElement("br");
+document.getElementById("fourthDiv").appendChild(imgBtnBr);
+
 //create an array of objects each with a src and alt to click through with a button
 //create a counter to shift through the array with
 var imgObjectArray = [
     {
-        src: "",
-        alt: ""
+        src: "img/knight1.jpg",
+        alt: "image of knight, drgaon, and shield"
     },
     {
-        src: "",
-        alt: ""
+        src: "img/knight2.jpg",
+        alt: "knight kneeling before a king"
     },
     {
-        src: "",
-        alt: ""
+        src: "img/knight3.jpg",
+        alt: "knight shielding against a stream of fire"
     }
 ]
+var imgCounter = 0;
+
+//creates, styles, and appends button to fourthDiv to shift between images
+var imgBtn = document.createElement("button");
+    imgBtn.type = "button";
+    imgBtn.onclick = 
+        function imgChange() {
+            if(imgCounter < imgObjectArray.length - 1) {
+                imgCounter++;
+            } else {
+                imgCounter = 0;
+            }
+            imgOfKnight.src = imgObjectArray[imgCounter].src;
+            imgOfKnight.alt = imgObjectArray[imgCounter].alt;
+        }
+    imgBtn.id = "imgBtn";
+    imgBtn.innerText = "Click Me!";
+    imgBtn.style.margin = "25px";
+    imgBtn.style.padding = "15px 30px";
+    imgBtn.style.fontSize = "1.2rem";
+document.getElementById("fourthDiv").appendChild(imgBtn);
